@@ -1,6 +1,4 @@
-local progName is "launch".
-local bootLoader is "boot_launch".
-local requirements is list("gturns", "lib").
+parameter progName is "launch", bootLoader is "boot_launch", requirements is list("gturns").
 
 wait 2.
 if(homeConnection:isconnected){

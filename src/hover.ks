@@ -5,7 +5,7 @@ lock throttle to _throttle.
 lock steering to heading(90, 90).
 
 set landingTime to time:seconds.
-set targetAlt to 3000.
+set targetAlt to 500.
 set startAlt to alt:radar.
 // set kP to 0.05. 
 // set kI to 0.0001. // total error should mean less than current error.

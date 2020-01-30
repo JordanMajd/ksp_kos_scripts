@@ -19,6 +19,8 @@ function bundle {
 function copyFile {
 	parameter name, path, boot is false, compile is false.
 
+	if name = "" return.
+
 	if compile {
 		return compileCopy(name, path, boot).
 	}
