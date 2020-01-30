@@ -2,7 +2,7 @@ local progName is "launch".
 local bootLoader is "boot_launch".
 local requirements is list("gturns", "lib").
 
-wait 3.
+wait 2.
 if(homeConnection:isconnected){
 	switch to 0.
 	run once bundle.ks.

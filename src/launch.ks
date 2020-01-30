@@ -17,7 +17,7 @@ from {local cd is 3.} until cd = 0 step {set cd to cd - 1.} do {
 	print cd.
 	wait 1.
 }
-print "shit".
+
 stats().
 
 // autostaging
@@ -53,7 +53,7 @@ until ship:periapsis > desired_altitude {
 endProgram.
 
 function stats {
-	//clearscreen.
+	clearscreen.
 	print "Status: " + mission_status at (0, 0).
 	print "Stage: " + stage_count at (0, 1).
 	print "Vert Speed: " + ship:verticalspeed at (0, 2).
@@ -72,5 +72,4 @@ function endProgram {
 
 
 // TODO when in space blow fairing and open electric
-
 // TODO auto start program and have press x to cancel during countdown.
