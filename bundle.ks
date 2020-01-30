@@ -5,44 +5,41 @@ local libPath is "lib/".
 local outPath is "1:/".
 
 function bundle {
-  parameter program, requirements, bootLoader, compile is false.
+	parameter program, requirements, bootLoader, compile is false.
 
-  copyFile(program, srcPath, false, compile).
-  copyFile(bootLoader, bootPath, true, compile).
+	// copy bootloader first so it can update itself regardless of if there are bugs later on.
+	copyFile(bootLoader, bootPath, true, compile).
+	copyFile(program, srcPath, false, compile).
 
-  for lib in requirements {
-    copyFile(lib, libPath, false, compile).
-  }
+	for lib in requirements {
+		copyFile(lib, libPath, false, compile).
+	}
 }
 
 function copyFile {
-  parameter name, path, boot is false, compile is false.
+	parameter name, path, boot is false, compile is false.
 
-  if compile {
-    return compileCopy(name, path, boot).
-  }
+	if compile {
+		return compileCopy(name, path, boot).
+	}
 
-  local out is outPath.
-  if boot {
-    set out to outPath + bootPath.
-    set core:bootFileName to out + name + ".ks".
-  }
-  return copyPath(path + name, out).
+	setBootfileName(name, ".ks", boot).
+	return copyPath(path + name, choose outPath + bootPath if boot else outPath).
 }
 
 function compileCopy {
-  parameter name, path, boot is false.
+	parameter name, path, boot is false.
 
-  local outName is name + ".ksm".
-  compile path + name  to binPath + outName.
-  
-  local out is outPath.
-  if boot {
-    set out to outPath + bootPath.
-    set core:bootFileName to out + outName.
-  }
+	local outName is name + ".ksm".
+	compile path + name  to binPath + outName.
 
-  return copyPath(binPath + name, out).
+	setBootfileName(name, ".ksm", boot).
+	return copyPath(binPath + name, choose outPath + bootPath if boot else outPath).
 }
 
-// todo keep compiled bootloaders in boot?
+function setBootfileName {
+	parameter name, ext, boot.
+	if boot {
+		set core:bootfilename to bootPath + name + ext.
+	}
+}
