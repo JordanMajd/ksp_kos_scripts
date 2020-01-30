@@ -1,4 +1,4 @@
-parameter progName is "launch", bootLoader is "boot_launch", requirements is list("gturns").
+parameter progName is "launch", bootLoader is "boot_launch", requirements is list("gturns", "stages", "countdown").
 
 wait 2.
 if(homeConnection:isconnected){
@@ -7,4 +7,6 @@ if(homeConnection:isconnected){
 	bundle(progName, requirements, bootloader).
 	switch to 1.
 }
+run launch.
 // reboot required if bootloader updated
+// TODO detect if previous bootloader different than current and auto reboot.
