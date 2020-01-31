@@ -34,10 +34,12 @@ lock throttle to 0.
 // blow fairings and open panels
 when ship:altitude > 55000 then toggle ag1.
 
+local burnTime is 45. // TODO compute
+
 set missionStatus to "circularizing".
 until orbitalSpeed(ship:periapsis) < targetSpeed {
 	set _steering to heading(90, 0).
-	if eta:apoapsis < 30 or eta:apoapsis > eta:periapsis {
+	if eta:apoapsis < burnTime or eta:apoapsis > eta:periapsis {
 		lock throttle to 1.
 	} else {
 		lock throttle to 0.
@@ -60,10 +62,15 @@ function stats {
 	print "Vert Speed: " + ship:verticalspeed at (0, 2).
 	print "Ground Speed: " + ship:groundspeed  at (0, 3).
 	print "Air Speed: " + ship:airspeed at (0, 4).
+
+	//altitude
 	print "Apoapsis: " + round(ship:apoapsis, 0) + " (" + round(eta:apoapsis, 0) + "s)" at (0, 5).
 	print "Periapsis: " + round(ship:periapsis, 0) + " (" + round(eta:periapsis, 0) + "s)" at (0, 6).
-	print "Orbital Speed: " + round(ship:velocity:orbit:mag, 0) at (0, 7).
-	print "Target Speed: " + round(targetSpeed, 0) at (0, 8).
+	
+	print "Target Orb Speed: " + round(targetSpeed, 0) at (0, 7).
+	print "Orb Speed: " + round(ship:velocity:orbit:mag, 0) at (0, 8).
+	print "Apo Orb Speed: " + round(ship:apoapsis, 0) at (0, 9).
+	print "Peri Orb Speed: " + round(ship:periapsis, 0) at (0, 10).
 }
 
 function endProgram {
@@ -76,3 +83,5 @@ function endProgram {
 
 // TODO when in space blow fairing and open electric
 // TODO auto start program and have press x to cancel during countdown.
+
+// what about just burning every time apoapsis orbital speed goes below target speed until periapsis orbital speed is below target speed?
