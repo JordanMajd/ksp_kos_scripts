@@ -1,3 +1,5 @@
+@lazyglobal off.
+
 local binPath is "bin/".
 local bootPath is "boot/".
 local srcPath is "src/".
@@ -43,5 +45,13 @@ function setBootfileName {
 	parameter name, ext, boot.
 	if boot {
 		set core:bootfilename to bootPath + name + ext.
+	}
+}
+
+function clean {
+	for file in list {
+		if file:extension = ".ks" or file:extension = (".ksm") {
+			deletePath(file:name).
+		}
 	}
 }

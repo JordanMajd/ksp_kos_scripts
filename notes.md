@@ -30,7 +30,7 @@ FG = m * a = (m * GM) / r^2
 - [First Point of Aries](https://en.wikipedia.org/wiki/First_Point_of_Aries)
 - [Tsiolkovsky Rocket Equation](https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation)
 - [Tsiolkovsky's rocket equation](https://canmom.github.io/physics/rocket-equation#information-staging)
-
+- [Braeunig: Orbital Mechanics](http://www.braeunig.us/space/orbmech.htm)
 
 ### KOS
 
