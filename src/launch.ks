@@ -6,7 +6,8 @@ run once "countdown".
 clearscreen.
 
 local missionStatus is "prelaunch".
-local desiredAltitude is 76000.
+local targetAltitude is 71000.
+local targetSpeed is orbitalSpeed(targetAltitude).
 local _steering is heading(90, 90).
 
 // lock variables.
@@ -14,31 +15,44 @@ lock steering to _steering.
 lock throttle to 1.0.
 
 set missionStatus to "countdown".
-initCountDown().
+if(ship:altitude < 250){
+	initCountDown().
+}
+
 initAutoStage().
-stats().
+
+clearscreen.
 
 set missionStatus to "gturn".
-// until ship:apoapsis > desiredAltitude {
-until ship:apoapsis > desiredAltitude {
-	set _steering to gturn_log(desiredAltitude).
+until ship:apoapsis > targetAltitude {
+	set _steering to gturn_log(targetAltitude).
 	stats().
 }
 // after gravity turn cut
 lock throttle to 0.
 
+// blow fairings and open panels
+when ship:altitude > 55000 then toggle ag1.
+
 set missionStatus to "circularizing".
-until ship:periapsis > desiredAltitude {
+until orbitalSpeed(ship:periapsis) < targetSpeed {
 	set _steering to heading(90, 0).
-	if eta:apoapsis < 30 or eta:periapsis > eta:apoapsis {
-			lock throttle to 1.
+	if eta:apoapsis < 30 or eta:apoapsis > eta:periapsis {
+		lock throttle to 1.
 	} else {
-			lock throttle to 0.
+		lock throttle to 0.
 	}
 	stats().
 }
 
 endProgram.
+
+// Vis-viva for circular orbit.
+// For non circular orbit need to replace body:radius with semimajoraxis.
+function orbitalSpeed {
+	parameter tAlt.
+	return sqrt(body:mu / (tAlt + body:radius)).
+} 
 
 function stats {
 	print "Status: " + missionStatus at (0, 0).
@@ -48,6 +62,8 @@ function stats {
 	print "Air Speed: " + ship:airspeed at (0, 4).
 	print "Apoapsis: " + round(ship:apoapsis, 0) + " (" + round(eta:apoapsis, 0) + "s)" at (0, 5).
 	print "Periapsis: " + round(ship:periapsis, 0) + " (" + round(eta:periapsis, 0) + "s)" at (0, 6).
+	print "Orbital Speed: " + round(ship:velocity:orbit:mag, 0) at (0, 7).
+	print "Target Speed: " + round(targetSpeed, 0) at (0, 8).
 }
 
 function endProgram {
