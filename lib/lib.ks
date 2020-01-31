@@ -1,6 +1,6 @@
 @lazyglobal off.
 
-local confPath is "1:/config.json".
+local confPath is path("1:/config.json").
 
 function exit {
 	setConfigValue("autolaunch", false).

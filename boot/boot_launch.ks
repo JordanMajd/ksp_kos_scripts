@@ -8,12 +8,15 @@ wait 1. // wait for connection.
 if(homeConnection:isconnected){
 	switch to 0.
 	run once bundle.ks.
-	cleanFiles().
+	if(clean) {
+		cleanFiles().
+	}
 	bundle(progName, requirements, bootloader, compile).
 	switch to 1.
 }
 
 run once lib.
+//setConfigValue("autolaunch", false).
 local autolaunch is getConfigValue("autolaunch").
 if autolaunch = "true" {
 	run launch.
@@ -21,4 +24,3 @@ if autolaunch = "true" {
 
 // reboot required if bootloader updated
 // TODO detect if previous bootloader different than current and auto reboot.
-// TODO clean.
