@@ -48,10 +48,39 @@ function setBootfileName {
 	}
 }
 
-function clean {
-	for file in list {
-		if file:extension = ".ks" or file:extension = (".ksm") {
-			deletePath(file:name).
+function cleanFiles {
+	parameter cleanPath is path(outPath).
+	for file in listFiles(cleanPath):values() {
+		if file:extension = "ks" or file:extension = ("ksm") {
+			deletePath(outPath + file:name).
 		}
 	}
+}
+
+// listPath can be string or path()
+// return -1 if not found
+// TODO why isn't volumedirectory:list an iterable list but a lexicon?
+function listFiles {
+	parameter listPath is path().
+	// convert string to path
+	set listPath to path(listPath).
+
+	local currentVolumeItem is listPath:volume:files.
+	for seg in listPath:segments {
+
+		if currentVolumeItem:typename = "VolumeDirectory" {
+			set currentVolumeItem to currentVolumeItem:list.
+		}
+
+		if currentVolumeItem:haskey(seg) {
+			set currentVolumeItem to currentVolumeItem[seg].
+		} else { // not found
+			return -1.
+		}
+	}
+
+	if currentVolumeItem:hassuffix("list"){
+		return currentVolumeItem:list.
+	}
+	return currentVolumeItem.
 }
