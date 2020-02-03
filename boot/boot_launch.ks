@@ -2,7 +2,7 @@ parameter progName is "launch",
 	bootLoader is "boot_launch",
 	requirements is list("gturns", "stages", "countdown", "lib"),
 	compile is false,
-	clean is true.
+	clean is false.
 
 wait 1. // wait for connection.
 if(homeConnection:isconnected){
@@ -15,12 +15,9 @@ if(homeConnection:isconnected){
 	switch to 1.
 }
 
-run once lib.
-//setConfigValue("autolaunch", false).
+run once "lib".
+setConfigValue("autolaunch", true).
 local autolaunch is getConfigValue("autolaunch").
 if autolaunch = "true" {
 	run launch.
 }
-
-// reboot required if bootloader updated
-// TODO detect if previous bootloader different than current and auto reboot.

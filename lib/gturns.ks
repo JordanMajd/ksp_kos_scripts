@@ -11,7 +11,9 @@ function gturn_velocity {
 
 // until ship:altitude > desired_altitude
 function gturn_log {
-	parameter desiredAltitude.
-	local pitch is (1 - ( ship:apoapsis / desiredAltitude )^constant:e) * 90.
-	return heading(90, max(0, pitch)).
+	parameter desiredAltitude, desiredApoapsis.
+	until ship:apoapsis > desiredApoapsis {
+		local pitch is (1 - ( ship:apoapsis / desiredAltitude )^constant:e) * 90.
+		lock steering to  heading(90, max(0, pitch)).
+	}
 }
