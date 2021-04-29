@@ -7,10 +7,22 @@ local libPath is "lib/".
 local outPath is "1:/".
 
 function bundle {
-	parameter program, requirements, bootLoader, compile is false.
+	parameter program, requirements, bootLoader, compile is false, clean is false.
 
-	// copy bootloader first so it can update itself regardless of if there are bugs later on.
+	local bootFileSize is getBootloaderSize().
+
+	// make sure to clean after getting boot loader size
+	if clean {
+		cleanFiles().
+	}
+
+	// copy bootloader to vessel, if file size is different reboot to run latest
 	copyFile(bootLoader, bootPath, true, compile).
+	local newBootFileSize is getBootloaderSize().
+	if bootFileSize <> newBootFileSize {
+		reboot.
+	}
+
 	copyFile(program, srcPath, false, compile).
 
 	for lib in requirements {
@@ -79,8 +91,14 @@ function listFiles {
 		}
 	}
 
-	if currentVolumeItem:hassuffix("list"){
+	if currentVolumeItem:hassuffix("list") {
 		return currentVolumeItem:list.
 	}
 	return currentVolumeItem.
+}
+
+function getBootloaderSize {
+	local bp is path("1:/boot").
+	local bootLoader is bp:volume:open(core:bootfilename).
+	return bootloader:size.
 }

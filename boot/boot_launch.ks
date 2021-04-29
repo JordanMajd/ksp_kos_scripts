@@ -5,18 +5,15 @@ parameter progName is "launch",
 	clean is false.
 
 wait 1. // wait for connection.
-if(homeConnection:isconnected){
+if homeConnection:isconnected {
 	switch to 0.
 	run once bundle.ks.
-	if(clean) {
-		cleanFiles().
-	}
-	bundle(progName, requirements, bootloader, compile).
+	bundle(progName, requirements, bootloader, compile, clean).
 	switch to 1.
 }
 
 run once "lib".
-setConfigValue("autolaunch", true).
+//setConfigValue("autolaunch", true).
 local autolaunch is getConfigValue("autolaunch").
 if autolaunch = true {
 	run launch.

@@ -5,22 +5,20 @@ parameter progName is "hover",
 	clean is false.
 
 wait 1.
-if(homeConnection:isconnected){
+if homeConnection:isconnected {
 	switch to 0.
 	run once bundle.ks.
-	if(clean) {
-		cleanFiles().
-	}
-	bundle(progName, requirements, bootloader, compile).
+	bundle(progName, requirements, bootloader, compile, clean).
 	switch to 1.
 }
-// reboot required if bootloader updated
-// to swap bootloaders runPath("boot/boot_launch", "", "boot_hover").
 
-// if autolaunch run, otherwise user can type run hover in terminal
+// 1231 comment to have diff file size
+
 run once "lib".
-setConfigValue("autolaunch", true).
-local autolaunch is getConfigValue("autolaunch").
-if autolaunch = true {
+setConfigValue("autolaunch", false).
+
+// otherwise user can type run hover in terminal
+local autoLaunch is getConfigValue("autolaunch").
+if autoLaunch = true {
 	run hover.
 }

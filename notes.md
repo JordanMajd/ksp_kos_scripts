@@ -65,7 +65,7 @@ to do this i lock to prograde and then calculate the difference between my veloc
 
 by targeting a ETA smaller than the duration of the burn you should be able to keep a higher throttle i use eta =  burn duration because that gives me more margin for if i need to do staging
 
- tends to be with in a few 100m of the target AP
+tends to be with in a few 100m of the target AP
 
 should be possible to improve it with some additional pitch logic to keep the AP rising but that mostly felt like to much work for to little gain, might do it at some point but not now
 
