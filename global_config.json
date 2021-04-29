@@ -1,0 +1,13 @@
+{
+    "entries": [
+        {
+            "value": "autolaunch",
+            "$type": "kOS.Safe.Encapsulation.StringValue"
+        },
+        {
+            "value": false,
+            "$type": "kOS.Safe.Encapsulation.BooleanValue"
+        }
+    ],
+    "$type": "kOS.Safe.Encapsulation.Lexicon"
+}
