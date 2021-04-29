@@ -4,7 +4,7 @@ parameter progName is "hover",
 	compile is false,
 	clean is false.
 
-wait 2.
+wait 1.
 if(homeConnection:isconnected){
 	switch to 0.
 	run once bundle.ks.
@@ -19,8 +19,8 @@ if(homeConnection:isconnected){
 
 // if autolaunch run, otherwise user can type run hover in terminal
 run once "lib".
-setConfigValue("autolaunch", false).
+setConfigValue("autolaunch", true).
 local autolaunch is getConfigValue("autolaunch").
-if autolaunch = "true" {
+if autolaunch = true {
 	run hover.
 }

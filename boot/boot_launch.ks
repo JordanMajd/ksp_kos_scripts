@@ -18,6 +18,6 @@ if(homeConnection:isconnected){
 run once "lib".
 setConfigValue("autolaunch", true).
 local autolaunch is getConfigValue("autolaunch").
-if autolaunch = "true" {
+if autolaunch = true {
 	run launch.
 }

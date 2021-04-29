@@ -4,8 +4,6 @@
 
 ## Equations
 
-
-
 drag
 FD = 0.5 p * v^2 * d * A
 p = atmospherig density (kg / m^3)
@@ -15,8 +13,6 @@ A = cross-sectional area (m2)
 
 Terminal velocity indicates the optimal ascending speed.
 FG = m * a = (m * GM) / r^2
-
-
 
 
 ## Resources
@@ -43,10 +39,9 @@ Burn Time:
 - [KOS: How do I achieve a more circular orbit](https://www.reddit.com/r/KerbalSpaceProgram/comments/2c2bo5/how_can_i_achieve_a_more_circular_orbit/)
 - [KOS: Gradient Descent](https://www.reddit.com/r/Kos/comments/bg7qlz/gradient_descent_is_finding_unusual_solution/)
 - [KOS: Visavis](https://www.reddit.com/r/Kos/comments/azr17q/how_can_you_calculate_the_circularisation_burn/)
+- [What is the easiest way to circularize](https://www.reddit.com/r/Kos/comments/2wuo9o/what_is_the_easiest_way_to_circularize_while/)
 
-https://www.reddit.com/r/Kos/comments/2wuo9o/what_is_the_easiest_way_to_circularize_while/
 ## Comments
-
 
 // reboot required if bootloader updated
 // TODO detect if previous bootloader different than current and auto reboot.
@@ -56,7 +51,6 @@ https://www.reddit.com/r/Kos/comments/2wuo9o/what_is_the_easiest_way_to_circular
 
 // what about just burning every time apoapsis orbital speed goes below target speed until periapsis orbital speed is below target speed?
 
-
 // if eta:apoapsis < burnTime or eta:apoapsis > eta:periapsis { // worksish!
 // if orbitalSpeed(ship:apoapsis) > targetSpeed {  // good maintenence but not good for circularizing
 // TODO might need to ensure peri speed is positive
@@ -65,7 +59,6 @@ https://www.reddit.com/r/Kos/comments/2wuo9o/what_is_the_easiest_way_to_circular
 	// if eta:apoapsis < burnTime or eta:apoapsis > eta:periapsis {
 
 When transitioning from a gravity turn into raising my periapsis do I burn parallel to the planets surface (`heading(90, 0).` or prograde to circularize?
-
 
 in my latest launch script what i did was move away from circulizing at a fixed altitude and just target a circular orbit.
 to do this i lock to prograde and then calculate the difference between my velocity and the velocity needed for a circular orbit at AP then i just use throttle to keep the duration of the burn and the ETA to AP the same
