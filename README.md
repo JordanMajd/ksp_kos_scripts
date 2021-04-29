@@ -8,7 +8,7 @@ File structure:
 - [/lib]: This is a bunch of reusable code modules that can be used to compose larger scripts.
 - [/src]: This is where the primary scripts lib, right now there is a basic hover script and a script that launches and circularizes.
 
-See [/notes.md](/notes.md) for additional notes.
+See [/notes.md](/notes.md) for additional notes and resources.
 
 ## License
 

@@ -1,5 +1,9 @@
-clearScreen.
+// Flies rocket up to 500 meters and hovers
+// When fuel is low then proceeds to land
 
+run once "countdown".
+
+clearScreen.
 set _throttle to 0.
 lock throttle to _throttle.
 lock steering to heading(90, 90).
