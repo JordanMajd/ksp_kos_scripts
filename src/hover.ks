@@ -2,6 +2,7 @@
 // When fuel is low then proceeds to land
 
 run once "countdown".
+initCountDown().
 
 clearScreen.
 set _throttle to 0.

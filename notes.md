@@ -43,11 +43,7 @@ Burn Time:
 
 ## Comments
 
-// reboot required if bootloader updated
-// TODO detect if previous bootloader different than current and auto reboot.
-
 // TODO when in space blow fairing and open electric
-// TODO auto start program and have press x to cancel during countdown.
 
 // what about just burning every time apoapsis orbital speed goes below target speed until periapsis orbital speed is below target speed?
 

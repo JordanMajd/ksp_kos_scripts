@@ -15,7 +15,7 @@ if homeConnection:isconnected {
 // 1231 comment to have diff file size
 
 run once "lib".
-setConfigValue("autolaunch", false).
+setConfigValue("autolaunch", true).
 
 // otherwise user can type run hover in terminal
 local autoLaunch is getConfigValue("autolaunch").
