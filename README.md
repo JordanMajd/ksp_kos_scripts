@@ -46,6 +46,7 @@ See [/notes.md](/notes.md) for additional notes and resources.
 - [Launch Window Planer](https://alexmoon.github.io/ksp/)
 - [Interactive illustrated interplanetary guide and calculator for KSP](https://ksp.olex.biz/)
 - [[Tutorial] Interplanetary How-To Guide](https://forum.kerbalspaceprogram.com/index.php?/topic/16413-tutorial-interplanetary-how-to-guide/)
+- [[PDF] Interplanetary How-To Guide](/resources/interplanetary_how_to_guide.pdf)
 - [Reddit: How do I calculate phase and ejection angle](https://www.reddit.com/r/KerbalAcademy/comments/35wtv1/how_do_i_calculate_phase_and_ejection_angle/cr8pu4j/)
 - [Lambert's Problem](https://en.wikipedia.org/wiki/Lambert%27s_problem)
 
