@@ -11,7 +11,6 @@ File structure:
 
 See [/notes.md](/notes.md) for additional notes and resources.
 
-
 ## Resources
 
 - [Wiki: Terminology](https://wiki.kerbalspaceprogram.com/wiki/Terminology)
@@ -37,7 +36,6 @@ See [/notes.md](/notes.md) for additional notes and resources.
 - [KOS: Gradient Descent](https://www.reddit.com/r/Kos/comments/bg7qlz/gradient_descent_is_finding_unusual_solution/)
 - [KOS: Visavis](https://www.reddit.com/r/Kos/comments/azr17q/how_can_you_calculate_the_circularisation_burn/)
 - [What is the easiest way to circularize](https://www.reddit.com/r/Kos/comments/2wuo9o/what_is_the_easiest_way_to_circularize_while/)
-
 
 ### Transfers & Burns
 
