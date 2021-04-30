@@ -4,7 +4,7 @@ parameter progName is "transfer",
 	compile is false,
 	clean is false.
 
-wait 1.
+wait 2.
 if homeConnection:isconnected {
 	switch to 0.
 	run once bundle.ks.
@@ -12,4 +12,4 @@ if homeConnection:isconnected {
 	switch to 1.
 }
 
-run transfer.
+run once transfer.

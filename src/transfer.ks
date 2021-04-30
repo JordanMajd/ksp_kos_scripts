@@ -81,11 +81,17 @@ function getEjectionAngle {
 
   local r is origin:radius + altitude.
   local mu is origin:mu.
-  local v is getEjectionVelocity(originStr, altitude).
+  local v is getEjectionVelocity(originStr, targetStr, altitude).
   local epsilon is (v^2 / 2)  - (mu / r).
   local h is r * v.
   local e is sqrt(1 + (2 * epsilon * h^2) / mu^2).
   return 180 - arcCos(1 / e).
+}
+
+
+function getCurrentEjectionAngle {
+  // direction
+  return ship:facing.
 }
 
 
@@ -112,27 +118,39 @@ function getEjectionVelocity {
   return v1.
 }
 
-
+//  Math.sqrt(p.mu / exitAlt) * (Math.sqrt((2 * d.alt) / (exitAlt + d.alt)) - 1);
 function getChangeVelocity {
   parameter originStr.
   parameter targetStr.
   parameter altitude.
   local origin is body(originStr).
   local target is body(targetStr).
-  local r1 is origin:radius + altitude.
-  local r2 is origin:soiradius.
-  local mu is origin:mu.
+  // local r1 is (origin:orbit:semimajoraxis + origin:orbit:semiminoraxis) / 2.
+  // local r2 is (target:orbit:semimajoraxis + target:orbit:semiminoraxis) / 2.
+  local mu is body("sun"):mu.
+  local r1 is (origin:orbit:periapsis + origin:orbit:apoapsis) / 2 + origin:soiradius.
+  local r2 is (target:orbit:periapsis + target:orbit:apoapsis) / 2.
   local v2 is sqrt(mu / r1) * (sqrt((2 * r2) / (r1 + r2)) - 1).
   return v2.
 }
+function getDV {
+  parameter originStr, altitude, velocity.
+  local mu is body(originStr):mu.
+  local r1 is body(originStr):radius + altitude.
+  return velocity - sqrt(mu / r1).
+}
 
-local targetStr is "jool".
 local originStr is "kerbin".
+local targetStr is "jool".
 local altitude is 100000.
 
 Print("Hohmann transfer params from " + originStr + " to " + targetStr).
 print("Current Phase Angle: " + getCurrentPhaseAngle(originStr,targetStr)).
+print("Current Ejection Angle:" + getCurrentEjectionAngle()).
 print("Transfer Phase Angle: " + getTransferPhaseAngle(originStr, targetStr)).
 print("Transfer Ejection Angle: " + getEjectionAngle(originStr, altitude)).
-print("Transfer Ejection Velocity: " + getEjectionVelocity(originStr, targetStr, altitude)).
-print("Transfer Burn Velocity (dv): " + getChangeVelocity(originStr, targetStr, altitude)).
+local ej is getEjectionVelocity(originStr, targetStr, altitude).
+local dv is getDV(originStr, altitude, ej).
+print("Transfer Ejection Velocity: " + ej).
+print("Transfer Burn Velocity (dv): " + dv).
+
