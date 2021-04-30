@@ -91,7 +91,7 @@ function getEjectionAngle {
 
 function getCurrentEjectionAngle {
   // direction
-  return ship:facing.
+  return ship:orbit.
 }
 
 
